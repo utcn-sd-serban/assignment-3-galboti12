@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "2bb11a16-31a6-4702-b100-1aa91003c18d",
+		"name": "stackoverflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/show-question/8",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe73ab84-14cf-4f92-8704-7f0b245d848a",
+						"exec": [
+							"pm.test(\"Response statis is Ok, has body, is json\", function(){",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "boti",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "boti",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 99,\n        \"author\": \"boti\",\n        \"title\": \"postmannn\",\n        \"text\": \"ffk4n3i3n4k\",\n        \"time\": \"2019-08-03 16:22:52\",\n        \"vote\": 0,\n        \"tags\": [\n            \"lol\",\n            \"asd\",\n            \"post\"\n        ]\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/show-question/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"show-question",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/show-question/8",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e942c7a8-5483-4212-ac60-aa1313599c0f",
+						"exec": [
+							"pm.test(\"Response statis is Ok, has body, is json\", function(){",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Has attibute id\", function () {",
+							"    pm.expect(pm.response.json()).to.include.keys(\"id\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "boti",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "boti",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/show-question/8",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"show-question",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/questions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b8277b3b-251e-43e9-b9fb-344ebd26d2c4",
+						"exec": [
+							"pm.test(\"Response statis is Ok, has body, is json\", function(){\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Questions length > 2\", function(){\r",
+							"    var questions = pm.response.json();\r",
+							"    pm.expect(questions.length).to.be.above(2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Questions are ordered by date\", function(){\r",
+							"    var questions = pm.response.json();\r",
+							"    var ordered = true;\r",
+							"    for(var i = 0; i < questions.length - 1; i++) {\r",
+							"        if(questions[i].time.localeCompare(questions[i+1].time) < 0) {\r",
+							"            ordered = false;\r",
+							"        } \r",
+							"    }\r",
+							"    pm.expect(ordered).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "boti",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "boti",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/questions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/filter-by-text/wa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "664bb11b-4939-40b0-9398-56a5e09bfb85",
+						"exec": [
+							"pm.test(\"Response statis is Ok, has body, is json\", function(){\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Resulting question titles include the searched text wa\", function(){\r",
+							"    var questions = pm.response.json();\r",
+							"    var flag = true;\r",
+							"    for(var i = 0; i < questions.length; i++) {\r",
+							"        if(!questions[i].title.includes(\"wa\")) {\r",
+							"            flag = false;\r",
+							"        }\r",
+							"    }\r",
+							"    pm.expect(flag).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "boti",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "boti",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/filter-by-text/wa",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filter-by-text",
+						"wa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
